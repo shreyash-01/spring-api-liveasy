@@ -2,11 +2,11 @@ package com.example.springapiliveasy.service;
 
 
 import com.example.springapiliveasy.model.Load;
-//import com.example.springapiliveasy.repository.LoadRepository;
 import com.example.springapiliveasy.repository.LoadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -42,10 +42,17 @@ public class LoadService {
         loadRepository.deleteById(String.valueOf(loadID));
     }
 
-//    public List<Load> getLoadWithShipperID(String shipperId) {
-//        return loadRepository.findLoadByShipperId(shipperId);
-//
-//    }
+    public List<Load> getLoadWithShipperID(String shipperId) {
+        List<Load> temp = loadRepository.findAll();
+        List<Load> arr = new ArrayList<>();
+        for(Load i:temp){
+            if(i.getShipperId().equals(shipperId)){
+                arr.add(i);
+            }
+        }
+        return arr;
+
+    }
 
     public List<Load> getAllLoads() {
         return loadRepository.findAll();

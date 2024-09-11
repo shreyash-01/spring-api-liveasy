@@ -13,14 +13,19 @@ public class Controller {
     @Autowired
     private LoadService loadService;
 
-    @GetMapping("/load")
-    public List<Load> getLoads(){
-        return loadService.getAllLoads();
-    }
 
     @GetMapping("/load/{loadID}")
     public Load getLoad(@PathVariable("loadID") int loadID){
         return loadService.getLoad(loadID);
+    }
+
+    @GetMapping("/load")
+    public List<Load> getLoadWithShipperId(@RequestParam(name = "shipperid", defaultValue = "null") String shipperId){
+        if(shipperId.equals("null")){
+            return loadService.getAllLoads();
+        }
+
+        return loadService.getLoadWithShipperID(shipperId);
     }
 
     @PostMapping("/load")

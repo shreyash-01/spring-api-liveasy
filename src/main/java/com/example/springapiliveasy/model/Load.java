@@ -130,6 +130,13 @@ public class Load {
         this.shipperId = shipperId;
     }
 
+    public int getLoadID() {
+        return loadID;
+    }
+
+    public void setLoadID(int loadID) {
+        this.loadID = loadID;
+    }
 
     @Override
     public String toString() {
